@@ -6,7 +6,11 @@ import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  title = 'angular';
+  ngOnInit() {
+  }
 
+  /*
   private lastId = 0;
 
   @ViewChild('firstInput')
@@ -40,5 +44,5 @@ export class AppComponent implements OnInit {
   private focusFirstInput() {
     const input = this.firstInput.nativeElement as HTMLInputElement;
     input.focus();
-  }
+  }*/
 }

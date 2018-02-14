@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
+import { EmpleadosModule } from './empleados/empleados.module';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     FormsModule,
+    EmpleadosModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
