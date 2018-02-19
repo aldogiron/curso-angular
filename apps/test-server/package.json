@@ -1,0 +1,23 @@
+{
+  "name": "apps",
+  "version": "1.0.0",
+  "description": "Simple servidor con una api http para usar de ejemplo en angular.",
+  "scripts": {
+    "start": "npm run build && node ./src/server.js",
+    "build": "tsc -p ."
+  },
+  "author": "Miguel Roman <miguelerm@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@types/body-parser": "^1.16.8",
+    "@types/cors": "^2.8.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.11.1",
+    "@types/node": "^9.4.6",
+    "typescript": "^2.7.2"
+  }
+}
