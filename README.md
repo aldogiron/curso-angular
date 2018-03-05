@@ -35,19 +35,32 @@ npm run start
 Creando el back-end:
 
 ```bash
+# crear estructura de directorios
 mkdir src
 cd src
 mkdir backend
 cd backend
+
+# crear solucion
 dotnet new sln --name Backend
+
+# crear proyecto
 dotnet new webapi --name Backend.Api --output Backend.Api
+
+# agregar proyecto a la solucion
 dotnet sln add Backend.Api\Backend.Api.csproj
+
+# agregar nuget packages al proyecto
+dotnet add .\Backend.Api\Backend.Api.csproj package GlobalExceptionHandler
 ```
 
 Creando el front-end
 
 ```bash
+# acceder al directorio fuente
 cd src
+
+# crear la aplicación de angular
 ng new frontend --directory frontend --routing true
 ```
 
