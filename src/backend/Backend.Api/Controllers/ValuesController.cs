@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Api.Controllers
@@ -27,6 +29,11 @@ namespace Backend.Api.Controllers
         [HttpPost]
         public void Post([FromBody]string value)
         {
+            var failures = new[]{ 
+                new ValidationFailure("Nombre", "Debe tener x cantidad de letras"),
+                new ValidationFailure("FechaNacimiento", "Debe ser mayor de edad"),
+            };
+            throw new ValidationException("Error del servidor :(", failures);
         }
 
         // PUT api/values/5

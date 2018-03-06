@@ -27,6 +27,7 @@ Ejecutar el servidor de frontend (se quedará escuchando en el puerto 4200):
 
 ```bash
 cd curso-angular\src\frontend
+npm install
 npm run start
 ```
 

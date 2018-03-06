@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation;
 using GlobalExceptionHandler.WebApi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,14 +27,27 @@ namespace Backend.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            //services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
+            /*app.UseCors(config => {
+                config.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+            });*/
+
             app.UseExceptionHandler().WithConventions(x => {
                 x.ContentType = "application/json";
                 x.MessageFormatter(e => JsonConvert.SerializeObject(new { e.Message }));
+
+                x.ForException<ValidationException>()
+                    .ReturnStatusCode(400)
+                    .UsingMessageFormatter((e, context) => {
+                        var ex = e as ValidationException;
+                        return JsonConvert.SerializeObject(new { ex.Message, ex.Errors });
+                    });
             });
 
             app.UseMvc();
