@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Backend.Api.Exceptions;
 using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
@@ -22,13 +23,17 @@ namespace Backend.Api.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+            throw new RecordNotFoundException();
         }
 
         // POST api/values
         [HttpPost]
         public void Post([FromBody]string value)
         {
+
+            var z = default(ValidationException);
+            z.Data.Add("a", "a");
+
             var failures = new[]{ 
                 new ValidationFailure("Nombre", "Debe tener x cantidad de letras"),
                 new ValidationFailure("FechaNacimiento", "Debe ser mayor de edad"),

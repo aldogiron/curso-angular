@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Backend.Api.Exceptions;
 using FluentValidation;
 using GlobalExceptionHandler.WebApi;
 using Microsoft.AspNetCore.Builder;
@@ -34,10 +35,12 @@ namespace Backend.Api
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
 
+            //app.UseDeveloperExceptionPage();
             /*app.UseCors(config => {
                 config.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
             });*/
 
+    
             app.UseExceptionHandler().WithConventions(x => {
                 x.ContentType = "application/json";
                 x.MessageFormatter(e => JsonConvert.SerializeObject(new { e.Message }));
@@ -48,8 +51,12 @@ namespace Backend.Api
                         var ex = e as ValidationException;
                         return JsonConvert.SerializeObject(new { ex.Message, ex.Errors });
                     });
-            });
 
+                x.ForException<RecordNotFoundException>()
+                    .ReturnStatusCode(404)
+                    .UsingMessageFormatter((e, c) => "Http Not Found");
+            });
+ 
             app.UseMvc();
         }
     }
