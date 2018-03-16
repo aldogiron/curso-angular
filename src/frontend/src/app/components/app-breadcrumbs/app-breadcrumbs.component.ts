@@ -33,7 +33,7 @@ export class AppBreadcrumbsComponent {
             const routeSnapshot = route.snapshot;
             url += '/' + routeSnapshot.url.map(segment => segment.path).join('/');
             this.breadcrumbs.push({
-              label: route.snapshot.data,
+              label: routeSnapshot.data,
               url:   url
             });
             currentRoute = route;

@@ -3,10 +3,18 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <a class="navbar-brand" href="#"></a>
-  <button class="navbar-toggler d-md-down-none mr-auto" type="button" appSidebarToggler>
+  <button class="navbar-toggler d-md-down-none" type="button" appSidebarToggler>
     <span class="navbar-toggler-icon"></span>
   </button>
-  <button class="navbar-toggler d-md-down-none" type="button" appAsideMenuToggler>
+  <ul class="nav navbar-nav d-md-down-none">
+    <li class="nav-item px-3">
+      <a class="nav-link" [routerLink]="'/'">Inicio</a>
+    </li>
+    <li class="nav-item px-3">
+      <a class="nav-link" [routerLink]="'/admin'">Administraci&oacute;n</a>
+    </li>
+  </ul>
+  <button class="navbar-toggler d-md-down-none ml-auto" type="button" appAsideMenuToggler>
     <span class="navbar-toggler-icon"></span>
   </button>
 </header>

@@ -1,28 +1,26 @@
 import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 
+import { Router, NavigationEnd, ActivatedRoute, ActivationEnd } from '@angular/router';
+
 // Import navigation elements
-import { navigation } from './../../_nav';
+import { navs } from './../../_nav';
 
 @Component({
   selector: 'app-sidebar-nav',
   template: `
     <nav class="sidebar-nav">
       <ul class="nav">
-        <ng-template ngFor let-navitem [ngForOf]="navigation">
-          <li *ngIf="isDivider(navitem)" class="nav-divider"></li>
-          <ng-template [ngIf]="isTitle(navitem)">
-            <app-sidebar-nav-title [title]='navitem'></app-sidebar-nav-title>
-          </ng-template>
-          <ng-template [ngIf]="!isDivider(navitem)&&!isTitle(navitem)">
-            <app-sidebar-nav-item [item]='navitem'></app-sidebar-nav-item>
-          </ng-template>
-        </ng-template>
+        <li *ngFor="let navitem of navigation" [ngClass]="{ 'nav-divider': isDivider(navitem) }">
+          <app-sidebar-nav-title *ngIf="isTitle(navitem)" [title]='navitem'></app-sidebar-nav-title>
+          <app-sidebar-nav-item *ngIf="!isDivider(navitem)&&!isTitle(navitem)" [item]='navitem'></app-sidebar-nav-item>
+        </li>
       </ul>
     </nav>`
 })
 export class AppSidebarNavComponent {
 
-  public navigation = navigation;
+  private moduleName: string;
+  public navigation = [];
 
   public isDivider(item) {
     return item.divider ? true : false
@@ -32,10 +30,30 @@ export class AppSidebarNavComponent {
     return item.title ? true : false
   }
 
-  constructor() { }
-}
+  constructor(router: Router) {
 
-import { Router } from '@angular/router';
+    router.events
+      .filter(event => event instanceof ActivationEnd)
+      .subscribe((event) => {
+        const dataModuleName = (event as ActivationEnd).snapshot.data.moduleName;
+        this.updateNavigation(dataModuleName);
+      })
+  }
+
+  private updateNavigation(dataModuleName) {
+    const newModuleName = dataModuleName || this.moduleName;
+
+    if (this.moduleName === newModuleName) {
+      return;
+    }
+
+    this.moduleName = newModuleName;
+    const menuItems = navs[newModuleName] || [];
+    this.navigation.length = 0;
+    this.navigation.push(...menuItems);
+  }
+
+}
 
 @Component({
   selector: 'app-sidebar-nav-item',

@@ -10,22 +10,20 @@ import {
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  },
-  {
-    path: '',
     component: FullLayoutComponent,
-    data: {
-      title: 'Home'
-    },
     children: [
       {
-        path: 'dashboard',
-        loadChildren: './views/dashboard/dashboard.module#DashboardModule'
-      }
+        path: '',
+        data: { moduleName: 'home' },
+        loadChildren: './modules/home/home.module#HomeModule'
+      },
+      {
+        path: 'admin',
+        data: { moduleName: 'admin' },
+        loadChildren: './modules/admin/admin.module#AdminModule'
+      },
     ]
-  }
+  },
 ];
 
 @NgModule({
