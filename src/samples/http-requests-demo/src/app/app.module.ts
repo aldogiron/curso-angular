@@ -2,7 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 
-import { AppComponent } from './app.component';
+import { AppComponent, AlbumsService, UsersService, PostsService } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -10,9 +12,15 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    CommonModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AlbumsService,
+    UsersService,
+    PostsService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

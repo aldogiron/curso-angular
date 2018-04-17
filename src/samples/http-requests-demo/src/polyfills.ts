@@ -64,3 +64,8 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/do';
+
+import 'rxjs/add/observable/zip';
