@@ -26,6 +26,11 @@ namespace Backend.Api.Controllers
             this.hasher = hasher;
         }
 
+        [HttpGet("roles")]
+        public IActionResult ObtenerRoles() {
+            return Ok(new []{"usuarios", "developers", "admin"});
+        }
+
         [HttpPost]
         public Task<IActionResult> AutenticarAsync([FromBody] AutenticarRequestModel requestModel)
         {

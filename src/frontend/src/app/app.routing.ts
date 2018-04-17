@@ -6,6 +6,7 @@ import {
   FullLayoutComponent,
   SimpleLayoutComponent
 } from './containers';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -19,7 +20,8 @@ export const routes: Routes = [
       },
       {
         path: 'admin',
-        data: { moduleName: 'admin' },
+        data: { moduleName: 'admin', roles: ['admin', 'sysadmin'] },
+        canActivate: [AuthGuard],
         loadChildren: './modules/admin/admin.module#AdminModule'
       },
     ]

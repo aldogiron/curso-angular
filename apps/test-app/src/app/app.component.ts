@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Empleado } from './servicios/empleados.service';
 
 @Component({
   selector: 'app-root',
@@ -9,40 +10,4 @@ export class AppComponent implements OnInit {
   title = 'angular';
   ngOnInit() {
   }
-
-  /*
-  private lastId = 0;
-
-  @ViewChild('firstInput')
-  firstInput: ElementRef;
-
-  title = 'angular';
-  nombre = '';
-  items = [];
-
-  ngOnInit() {
-    this.focusFirstInput();
-  }
-
-  submit() {
-
-    if (!this.nombre || !this.nombre.length) {
-      return;
-    }
-
-    this.lastId++;
-    const item = {
-      id: this.lastId,
-      nombre: this.nombre
-    };
-
-    this.items.push(item);
-    this.nombre = '';
-    this.focusFirstInput();
-  }
-
-  private focusFirstInput() {
-    const input = this.firstInput.nativeElement as HTMLInputElement;
-    input.focus();
-  }*/
 }

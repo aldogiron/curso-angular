@@ -7,7 +7,7 @@ namespace Backend.Api.Services
     public class PasswordHasher
     {
 
-        private const int iterationCount = 10000;
+        private const int iterationCount = 10_000;
         private const int numBytesRequested = 256 / 8;
 
         public string ComputeHash(string password, string salt)

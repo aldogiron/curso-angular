@@ -1,26 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
+import { AuthGuard } from '../../guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'configuracion',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    data: { title: 'Administración' },
   },
   {
-    path: '',
-    data: { title: 'Administración' },
-    children: [
-      {
-        path: 'configuracion',
-        component: ConfiguracionComponent,
-        data: {
-          title: 'Configuración'
-        }
-      },
-    ]
-  },
+    path: 'configuracion',
+    component: ConfiguracionComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Configuración',
+      roles: [ 'admin' ]
+    }
+  }
 ];
 
 @NgModule({

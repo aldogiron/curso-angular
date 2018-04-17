@@ -56,6 +56,12 @@
   },
   "defaults": {
     "styleExt": "scss",
-    "prefixInterfaces": false
+    "prefixInterfaces": false,
+    "guard": {
+      "spec": false
+    },
+    "component": {
+      "spec": false
+    }
   }
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { EmpleadosService, Empleado } from '../../servicios/empleados.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-empleados-crear',
@@ -7,37 +9,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmpleadosCrearComponent implements OnInit {
 
-  public modelo = new EmpleadoModelo('juan', false, 'M', '');
+  public nombre = '';
+  public id: number;
 
-  public departamentos = [];
-
-  constructor() { }
+  constructor(
+    private servicio: EmpleadosService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {
+  }
 
   ngOnInit() {
-    this.departamentos = [
-      'A',
-      'B',
-      'C',
-    ];
+    this.route.params.subscribe(params => {
+      this.id = parseInt(params['id'], 10);
+      this.cargarEmpleado();
+    });
   }
 
   submit() {
-    //hacer algo
+    const modelo = {
+      nombre: this.nombre
+    };
 
-    console.log(this.modelo);
+    this.servicio.crear(modelo)
+      .subscribe(e => {
+        this.nombre = '';
+        this.router.navigate(['empleados', 'listar'], {
+          queryParams: {
+            lastId: this.id
+          }
+        });
+      });
   }
 
-}
-
-class EmpleadoModelo {
-
-  constructor(
-    public nombre: string,
-    public activo: boolean,
-    public sexo: 'M' | 'F',
-    public departamento: string
-  ) {
-
+  private cargarEmpleado() {
+    this.servicio.obtenerUnico(this.id).subscribe(x => {
+      this.nombre = x.nombre;
+    });
   }
 
 }

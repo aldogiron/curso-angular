@@ -1,0 +1,16 @@
+<app-form-layout 
+    [showToolbar]="true"
+    (settingsClick)="onSettingsClick()"
+    [buttonText]="'Editar'"
+    (okClick)="editar()"
+    >
+    <div header>
+        Editar <strong>Registro</strong>
+    </div>
+    <form body>
+        <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" class="form-control" />
+        </div>
+    </form>
+</app-form-layout>

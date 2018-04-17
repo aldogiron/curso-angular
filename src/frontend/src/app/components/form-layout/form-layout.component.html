@@ -1,0 +1,18 @@
+<div class="card">
+    <div class="card-header">
+        <ng-content select="[header]"></ng-content>
+        <div class="card-actions" *ngIf="showToolbar">
+            <a (click)="settingsClick.emit()" class="btn-setting d-sm-down-none"><i class="icon-settings"></i></a>
+            <a href="#" class="btn btn-minimize" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true"><i class="icon-arrow-up"></i></a>
+            <a href="#" class="btn-close"><i class="icon-close"></i></a>
+        </div>
+    </div>
+    <div class="card-body">
+        <ng-content select="[body]"></ng-content>
+    </div>
+    <div class="card-footer">
+        <ng-content select="[footer]"></ng-content>
+        <button class="btn btn-primary" *appClicker="mostrar">{{buttonText}}</button>
+        <button class="btn btn-default" (click)="mostrar = true;" >Cancelar</button>
+    </div>
+</div>
