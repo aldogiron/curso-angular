@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    const url = 'http://localhost:5000/api/autenticacion';
+    const url = '/api/autenticacion';
     const data = this.form.value;
     this.http.post(url, data).subscribe(result => {
       sessionStorage.setItem('usuario', JSON.stringify(result));

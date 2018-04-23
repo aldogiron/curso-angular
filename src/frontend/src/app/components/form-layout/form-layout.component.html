@@ -12,7 +12,7 @@
     </div>
     <div class="card-footer">
         <ng-content select="[footer]"></ng-content>
-        <button class="btn btn-primary" *appClicker="mostrar">{{buttonText}}</button>
+        <button class="btn btn-primary" (click)="okClick.emit()">{{buttonText}}</button>
         <button class="btn btn-default" (click)="mostrar = true;" >Cancelar</button>
     </div>
 </div>

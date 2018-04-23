@@ -29,7 +29,7 @@ export class AuthGuard implements CanActivate {
       return false;
     }
 
-    return this.http.get<string[]>('http://localhost:5000/api/autenticacion/roles')
+    return this.http.get<string[]>('/api/autenticacion/roles')
       .map(roles => {
 
         for (const routeRole of routeRoles) {

@@ -7,14 +7,11 @@ import { CrearComponent } from './crear/crear.component';
 import { EditarComponent } from './editar/editar.component';
 import { FormLayoutComponent } from '../../components/form-layout/form-layout.component';
 import { CommonModule } from '@angular/common';
-import { ClieckerDirective } from '../../directives/clicker/clicker.directive';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    BrowserModule,
     FormsModule,
     DashboardRoutingModule,
     ChartsModule
@@ -23,8 +20,7 @@ import { FormsModule } from '@angular/forms';
     DashboardComponent,
     CrearComponent,
     EditarComponent,
-    FormLayoutComponent,
-    ClieckerDirective
+    FormLayoutComponent
   ]
 })
 export class HomeModule { }
